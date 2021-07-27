@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+  <title>Superhero Sighting Manager</title>
+</head>
+<body>
+<!-- Main Body of Page -->
+
+<div class="container">
+  <div class="row m-4">
+    <div class="col text-center border border-dark">
+      <h1><a href="index">Superhero Sighting Manager</a></h1>
+    </div>
+  </div>
+  <div class="row m-4 border border-dark">
+    <div class="col text-center m-3">
+      <a href="heroes" class="btn btn-outline-primary btn-lg">Heroes</a>
+    </div>
+    <div class="col text-center m-3">
+      <a href="superPowers" class="btn btn-outline-primary btn-lg">SuperPowers</a>
+    </div>
+    <div class="col text-center m-3">
+      <a href="organizations" class="btn btn-outline-primary btn-lg">Organizations</a>
+    </div>
+    <div class="col text-center m-3">
+      <a href="locations" class="btn btn-outline-primary btn-lg">Locations</a>
+    </div>
+    <div class="col text-center m-3">
+      <a href="sightings" class="btn btn-outline-primary btn-lg">Sightings</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="container">
+      <div class="col-12 m-2 text-center">
+        <span class="h5">Have you spotted a super hero or super villain? Do your part and report a sighting!<br/>
+          Add new <a href="heroes">heroes/villains</a>, <a href="superPowers">superpowers</a> they use,
+          <a href="organizations">organizations</a> they're affiliated with and <a href="locations">locations</a><br/>
+          they've been observed and ultimately, <a href="sightings">sighting reports</a> using the tabs above to build
+          a comprehensive<br/>database of superhuman activity around the world!
+        </span>
+      </div>
+    </div>
+
+
+    <div class="m-5 text-center">
+      <span class="h3"><strong>10 Most Recent Reported Sightings</strong></span>
+    </div>
+    <div class="row m-4 border border-dark">
+      <div class="col text-center m-3">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>Hero</th>
+            <th>Location</th>
+            <th>Date</th>
+            <th>More</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="sighting : ${sightings}">
+            <td th:text="${sighting.id}">ID</td>
+            <td><a href="#" th:href="@{/heroDetail(id=${sighting.hero.id})}" th:text="${sighting.hero.name}">Hero</a></td>
+            <td><a href="#" th:href="@{/locationDetail(id=${sighting.location.id})}" th:text="${sighting.location.name}">Location</a></td>
+            <td th:text="${#dates.format(sighting.sightingDate, 'yyyy-MM-dd')}">Sighting Date</td>
+            <td><a href="#" th:href="@{/sightingDetail(id=${sighting.id})}">More</a></td>
+            <td><a href="#" th:href="@{/editSighting(id=${sighting.id})}">Edit</a></td>
+            <td><a href="#" th:href="@{/deleteSighting(id=${sighting.id})}">Delete</a></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- End main body -->
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>
